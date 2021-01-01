@@ -63,5 +63,7 @@ gem 'devise'
 gem 'carrierwave', '~> 2.0'
 gem "mini_magick"
 gem "font-awesome-rails"
+gem 'carrierwave', '~> 2.0'
+gem 'jquery-rails', '~> 4.4'
 
 
