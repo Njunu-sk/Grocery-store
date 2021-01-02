@@ -1,1 +1,1 @@
-<%= link_to "#{current_order.order_items.size} items with a value of #{current_order.subtotal } $", cards_path %>
+<%= link_to "#{current_order.order_items.size} items valued at: #{current_order.subtotal } $", cards_path ,  class:"navbar-item button is-info mr2"%>

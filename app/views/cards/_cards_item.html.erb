@@ -1,15 +1,49 @@
- <% @order_items.each do |item| %>
-   <h3><%= item.product.title %></h3>
-   <h3><%= item.product.price %></h3>
+
+ <div class="keep-shopping pv1 mt4 has-text-right">
+  <%= link_to 'Keep Shopping', products_path, class: 'button is-primary' %>
+</div>
+<hr />
+<section class="section">
+   <% @order_items.each do |item| %>
+   <div class="columns align-items-center">
+      <div class="column is-2">
+        <figure class="is-128x128 image">
+          <%= image_tag(item.product.image_url(:thumb)) %>
+        </figure>
+      </div>
+      <div class="column is-9">
+        <strong><%= item.product.title %></strong>
+        <div class="columns align-items-center">
+          <div class="content column is-9">
+            <%= truncate(item.product.description, length: 50) %>
+          </div>
+          <div class="column is-3 has-text-right">
+            <strong class="f4"><%= number_to_currency(item.total) %></strong>
+          </div>
+        </div>
+      </div>
+   </div>
 
    <%= form_for item, remote: true do |f| %>
      <%= f.hidden_field :product_id, :value => item.product.id %>
-     <%= f.number_field :quantity, :value => item.quantity.to_i %>
-     <%= f.submit "Update Card" %>
+     <%= f.number_field :quantity, :value => item.quantity.to_i, class: 'select mt1' %>
+     <%= f.submit "Update Card", class: 'button is-primary update-cart'  %>
    <% end %>
-
-   <%= link_to 'Remove Items', order_item_path(item), method: :delete, remote: true %>
-   <h2>Subtotal: <%= item.total %></h2>
+  <div class="columns has-text-right">
+    <div class="column">
+     <%= link_to 'Remove Items', order_item_path(item), method: :delete, remote: true, class: "button is-small mb4" %>
+    </div>
+  </div>
+  <hr />
  <% end %>
 
- <h3>Your current cart has a subtotal of: <%= current_order.subtotal %></h3>
+
+ <div class="columns">
+    <div class="column total has-text-right">
+      <h4 class="title is-4">
+        <span class="f5 has-text-grey">Total:</span> <%= current_order.subtotal %>
+      </h4>
+    </div>
+  </div>
+</section>
+

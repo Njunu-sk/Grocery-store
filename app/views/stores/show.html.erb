@@ -22,4 +22,13 @@
   <%= @product.price %>
 </p>
 
+<tr>
+   <td>
+        <%= form_for @order_item, remote: true do |f| %>
+            <%= f.hidden_field :product_id, :value => @product.id %>
+            <%= f.number_field :quantity, :value => 1, :min => 1%>
+            <%= f.submit "Add to Cart" %>
+        <% end %>
+        </td>
+</tr>
 <%= link_to 'Back', root_path %>
