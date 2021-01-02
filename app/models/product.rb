@@ -5,7 +5,7 @@ class Product < ApplicationRecord
     has_many :order_items
 
     validates :title, presence: true
-    validates :description, length: { maximum: 500, too_long: "%{count} characters is the maximum alowed" }
-    validates :title, length: { maximum: 150, too_long: "%{count} characters is the maximum alowed" }
+    validates :description, length: { maximum: 500, too_long: "%{count} characters is the maximum allowed" }
+    validates :title, length: { maximum: 150, too_long: "%{count} characters is the maximum allowed" }
     validates :price, numericality: { only_integer: true }, length: { maximum: 7 }
 end
